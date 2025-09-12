@@ -3043,21 +3043,14 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  // --- helper: extract first number and convert hectare → sqm ---
+  // --- existing code for area/road/scheme filters ---
   function getAreaValue(text) {
     if (!text) return null;
-
-    text = text.replace(/\u2013|\u2014/g, "-").toLowerCase(); // normalize dash
+    text = text.replace(/\u2013|\u2014/g, "-").toLowerCase(); 
     const nums = text.match(/[\d.]+/g);
     if (!nums) return null;
-
     let value = parseFloat(nums[0]);
-
-    // convert hectare → sqm
-    if (text.includes("hect")) {
-      value = value * 10000;
-    }
-
+    if (text.includes("hect")) value = value * 10000;
     return value;
   }
 
@@ -3072,15 +3065,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const roadText = (row.cells[3]?.innerText || "").trim().toLowerCase();
 
       let schemeMatch = scheme.includes(schemeValue);
-
-      // --- area filter (<= input, exact or less) ---
       let areaMatch = true;
       if (!isNaN(areaInput)) {
         const rowArea = getAreaValue(areaText);
         areaMatch = rowArea !== null && rowArea <= areaInput;
       }
-
-      // --- road filter (substring match only) ---
       let roadMatch = true;
       if (roadInput) {
         roadMatch = roadText.includes(roadInput);
@@ -3095,9 +3084,36 @@ document.addEventListener("DOMContentLoaded", function () {
     if(el) el.addEventListener("input", filterTable);
   });
 
+  // --- NEW CODE: working copy buttons ---
+  function copyRowContent(button) {
+    const row = button.closest("tr");
+    if (!row) return;
+
+    const headers = Array.from(document.querySelectorAll("#zoningTable thead th"))
+      .map(th => th.innerText.replace(" ➝",""))
+      .slice(0,-1); // remove Action column
+
+    const cells = Array.from(row.querySelectorAll("td")).slice(0,-1);
+
+    let text = "";
+    headers.forEach((h,i) => {
+      text += `${h} ➝ ${cells[i].innerText}\n`;
+    });
+
+    navigator.clipboard.writeText(text.trim())
+      .then(()=>alert("Row copied!"))
+      .catch(()=>alert("Copy failed!"));
+  }
+
+  // Use event delegation to ensure it works after filtering
+  document.querySelector("#zoningTable tbody").addEventListener("click", function(e){
+    if(e.target && e.target.classList.contains("copy-btn")){
+      copyRowContent(e.target);
+    }
+  });
+
 });
 </script>
-
 
 
 
