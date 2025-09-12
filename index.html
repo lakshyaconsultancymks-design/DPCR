@@ -1,0 +1,3087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPCR</title>
+ <style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 20px;
+    background: linear-gradient(to right, #e3f2fd, #fce4ec); /* light blue to light pink */
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #0d47a1; /* Dark Blue */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #c62828; /* Dark Red */
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .search-box {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .search-box input {
+    padding: 8px;
+    width: 220px;
+    border: 2px solid #1976d2; /* Blue border */
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  .search-box input:focus {
+    border-color: #c62828; /* Red on focus */
+    box-shadow: 0 0 8px rgba(198, 40, 40, 0.6);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+  }
+
+  th {
+    background: #1976d2; /* Blue */
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+
+  tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  tr:hover {
+    background: #ffebee; /* light red hover */
+    transition: 0.3s;
+  }
+
+  .copy-btn {
+    background: #c62828; /* Red button */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s ease;
+  }
+  .copy-btn:hover {
+    background: #b71c1c; /* Darker red */
+  }
+</style>
+
+</head>
+<body>
+<body>
+
+  <h1>Lakshya Project Management</h1>
+  <h2>DPCR</h2>
+
+  <!-- Search boxes outside the table -->
+  <div class="search-box">
+    <!-- Scheme Type as dropdown -->
+    <select id="schemeSearch">
+      <option value="">ALL</option>
+      <option value="residential">Residential</option>
+      <option value="commercial">Commercial</option>
+      <option value="industrial">Industrial</option>
+      <option value="public">Public & Semi Public</option>
+      <option value="rural">Rural</option>
+      <option value="g2">G2</option>
+      
+    </select>
+
+    <!-- Other filters stay as input -->
+    <input type="text" id="areaSearch" placeholder="Search by Min Area (sq.m.)">
+    <input type="text" id="roadSearch" placeholder="Search by Road Width">
+  </div>
+
+  <table id="zoningTable">
+    <thead>
+      <tr>
+        <th>Scheme Type ➝</th>
+        <th>Activity ➝</th>
+        <th>Minimum Area Required (sq.m.) ➝</th>
+        <th>Road Width (m) ➝</th>
+        <th>Definitions ➝</th>
+        <th>Use Premises ➝</th>
+        <th>Action ➝</th>
+      </tr>
+    </thead>
+
+ <tbody>
+      <tr>
+        <td>Residential</td>
+        <td>Auditoriums</td>
+        <td>1,500 sq.m. (for a sitting capacity up to 500 seats)</td>
+        <td>30 mtr. & above</td>
+        <td>A premise having an enclosed space to seat audience and stage for various performances like Concerts, Plays, Recitals, Functions, etc.</td>
+        <td>Auditorium, Watch & ward Residence (upto 30 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Banks / ATM</td>
+        <td>Bank: 750 sq.m., ATM: 250 sq.m.</td>
+        <td>Bank: 18 mtr. & above, ATM: 12 mtr.</td>
+        <td>A premise for office to perform banking function and operations.</td>
+        <td>Bank, Watch & ward Residence (upto 30 sq.m.), Commercial office, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Barat ghar</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>A premise used for marriage and other social functions.</td>
+        <td>Barat ghar, Soft drink & Snack bar (upto 15 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Boarding house and lodging house</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>‘Boarding house’ is a premise in which rooms are let out on a long term basis as compared to hotels; ‘Lodging house’ is a premise used for lodging of less than 50 persons.</td>
+        <td>Boarding house and lodging house, Watch & ward residence (upto 30 sq.m.), Barber, Launderer, Snack stall, Dining Hall (upto 15 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Bus stop</td>
+        <td>2.5 m × 5 m (≈ 12.5 sq.m.)</td>
+        <td>On 18 mtr. & above road</td>
+        <td>Road side shade for passengers awaiting city buses. Bus stop for every 500–750 mtr. interval, 30–40 mtr. away from road crossing.</td>
+        <td>Bus stop</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Community centre</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>A premise having an enclosed space for various social and cultural activities of a residential area.</td>
+        <td>Community hall, Watch & ward residence (upto 30 sq.m.), Soft drink & Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+            <tr>
+        <td>Residential</td>
+        <td>Convenient shopping centre</td>
+        <td>1,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>A group of shops not exceeding 50 in number in residential area serving a population of 5000 persons.</td>
+        <td>Retail, Repair and Personnel service shop, Restaurant, Clinic</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Cycle rickshaw / Cycle cart stand</td>
+        <td>1.5 m × 1.5 m per unit (≈ 2.25 sq.m.)</td>
+        <td>As per parking zone of the scheme</td>
+        <td>-</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Dharamshala</td>
+        <td>10,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>A premise providing temporary accommodation for short duration on no-profit basis.</td>
+        <td>Dharamshala, Barber & Launderer shop, Soft drink & Snack bar, Dining Hall (upto 15 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Exhibition and art gallery</td>
+        <td>1,000 sq.m. and above</td>
+        <td>18 mtr. & above</td>
+        <td>A premise with facilities for exhibition and display of Paintings, Sculptures, Murals, Ceramics, Handicrafts, or specific products.</td>
+        <td>Library, Watch & ward residence (upto 30 sq.m.), Canteen, Exhibition and Art gallery, Auditorium</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Township / Mini Township Schemes</td>
+        <td>10,000 sq.m. and above</td>
+        <td>18 mtr. & above</td>
+        <td>Plotted development / Group Housing / Flats with Institutional, Recreational, Office, Tourism, Commercial use as per norms.</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Group housing</td>
+        <td>5,000 sq.m. (18 mtr. & above; within township: 12 mtr. & above)</td>
+        <td>18 mtr. & above</td>
+        <td>Residential flats with amenities like Parking, Park, Shops, Public utility etc.</td>
+        <td>Residential flat, Retail shops (Confectionery, Grocery, Books, Chemist, Barber, Laundry, Tailor, Vegetables), Crèche/Day care</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Guest house</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr.</td>
+        <td>Housing for short duration.</td>
+        <td>Guest house, Watch & ward residence, Barber, Launderer, Dining Hall, Snack stall (15 sq.m.), Small restaurant</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Gymnasium</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>-</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Health centre (up to 30 beds)</td>
+        <td>2,500 sq.m. and above</td>
+        <td>18 mtr. & above</td>
+        <td>Indoor/outdoor treatment up to 30 beds, run by public/charitable institutions.</td>
+        <td>Health centre, Watch & ward residence, Chemist shop</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Higher Secondary / Senior Secondary School</td>
+        <td>6,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Educational facility with secondary and higher classes.</td>
+        <td>School building, Playground, Parking, Staff housing (upto 5% of area)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Kindergarten / Nursery School</td>
+        <td>1,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Pre-primary school for children.</td>
+        <td>School building, Playground</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Milk booth</td>
+        <td>25 sq.m.</td>
+        <td>9 mtr. & above</td>
+        <td>Small retail outlet for sale of milk and milk products.</td>
+        <td>Milk booth</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Nursery / Primary School</td>
+        <td>2,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Primary level education for children.</td>
+        <td>School building, Playground</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Nursing home (up to 50 beds)</td>
+        <td>2,500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>A health care premise providing long term treatment for up to 50 patients.</td>
+        <td>Nursing home, Pharmacy, Staff residence</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Petrol pump / Fuel filling station</td>
+        <td>1,250 sq.m.</td>
+        <td>30 mtr. & above</td>
+        <td>Premise with facilities for sale of fuel for vehicles.</td>
+        <td>Petrol station, Convenience shop (upto 50 sq.m.), Service bay, Air & water facilities</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Police post</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>A small unit of police station for local law & order maintenance.</td>
+        <td>Police office, Staff quarters (upto 25% of area)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Post office</td>
+        <td>250 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Premise providing mail and related communication services.</td>
+        <td>Post office, Small retail kiosk (upto 15 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Religious building</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Premise dedicated to religious or spiritual activities.</td>
+        <td>Temple, Mosque, Church, Gurudwara, Meditation hall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Research / Training institute</td>
+        <td>4,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Premise used for education, training and research activities.</td>
+        <td>Institute building, Hostel, Library, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Community hall / Social welfare centre</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>A premise for cultural, social and recreational activities of local residents.</td>
+        <td>Community hall, Canteen, Library, Exhibition space</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Convenience shopping</td>
+        <td>1,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Small shopping complex with retail, repair and service shops for local needs.</td>
+        <td>Retail shop, Barber, Tailor, Grocery, Medical store</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Cycle rickshaw / Auto rickshaw stand</td>
+        <td>As per norms (min. 2 m × 2 m per unit)</td>
+        <td>As per scheme</td>
+        <td>Stand for parking of rickshaws/auto rickshaws.</td>
+        <td>Parking stand</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Dharamshala</td>
+        <td>10,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Temporary accommodation for travelers or pilgrims on no-profit basis.</td>
+        <td>Dharamshala, Small dining hall, Personnel service shops</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Exhibition / Art gallery</td>
+        <td>1,000 sq.m. & above</td>
+        <td>18 mtr. & above</td>
+        <td>Premise for display and exhibition of art, craft, and related activities.</td>
+        <td>Exhibition hall, Library, Auditorium, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Group housing</td>
+        <td>5,000 sq.m.</td>
+        <td>18 mtr. & above (12 mtr. inside township)</td>
+        <td>Residential flats with amenities like parking, shops, public utility.</td>
+        <td>Flats, Retail shops, Crèche, Day care centre</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Guest house</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr.</td>
+        <td>Premise for temporary accommodation for visitors.</td>
+        <td>Guest rooms, Dining hall, Watch & ward, Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Gymnasium</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Premise with indoor physical fitness and training facilities.</td>
+        <td>Gym, Locker room</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Health centre (up to 30 beds)</td>
+        <td>2,500 sq.m. & above</td>
+        <td>18 mtr. & above</td>
+        <td>Premise providing indoor/outdoor medical facilities up to 30 beds.</td>
+        <td>Health centre, Pharmacy, Watch & ward</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Hostel</td>
+        <td>As per byelaws</td>
+        <td>18 mtr. & above</td>
+        <td>Residential accommodation for students or workers.</td>
+        <td>Hostel, Dining hall, Snack stall, Barber shop</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Integrated residential school (with/without hostel)</td>
+        <td>As per education dept. norms</td>
+        <td>18 mtr. & above (hostel) / 12 mtr. & above (handicapped)</td>
+        <td>School up to XII standard with or without hostel facilities.</td>
+        <td>School, Hostel, Flats, Retail shops, Auditorium, Swimming pool, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Library</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Premise with a large collection of books and reading facilities.</td>
+        <td>Library, Canteen, Auditorium, Exhibition space</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Local shopping centre</td>
+        <td>4,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Shops not exceeding 75, serving a population of 15,000 persons.</td>
+        <td>Retail shops, Repair shops, Personnel services, Offices</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Nursery & kindergarten school</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Training and play facilities for children before formal schooling.</td>
+        <td>Nursery school, Day care, Watch & ward residence</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Nursing home</td>
+        <td>2,500 sq.m.</td>
+        <td>9 mtr. & above</td>
+        <td>Medical care for patients up to 30 beds, run by doctors commercially.</td>
+        <td>Nursing home, Pharmacy, Watch & ward</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Old age home</td>
+        <td>250 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Premises with residential and related facilities for elderly persons.</td>
+        <td>Old age home, Caretaker flat, Dispensary, Community hall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Park</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Premises used for recreation/leisure with landscaping, parking, toilets, etc.</td>
+        <td>Park, Snack stall (for parks > 10,000 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Burial grounds / Cremation site</td>
+        <td>As per location (not conflicting with residential areas)</td>
+        <td>-</td>
+        <td>Premise with facilities for burying / cremation of dead bodies.</td>
+        <td>Burial ground, Cremation ground, Cemetery, Electric crematorium, Retail shops (wood, flowers, related items), Watch & ward residence (30 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Children traffic park</td>
+        <td>10,000 – 20,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Park with facilities to educate children about traffic & signalling.</td>
+        <td>Children traffic park, Watch & ward residence (30 sq.m.), Snack stall, Museum, Auditorium</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Cinema hall / Multiplex</td>
+        <td>Cinema: 1,500 sq.m.<br>Multiplex: 2,000 sq.m.</td>
+        <td>30 mtr. & above</td>
+        <td>Facilities for projection of movies and stills with seating.</td>
+        <td>Cinema, Watch & ward residence (30 sq.m.), Admin office, Snack stall, Museum, Auditorium</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Clinical laboratory</td>
+        <td>100 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for conducting diagnostic medical tests.</td>
+        <td>Clinical laboratory, Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Household industry</td>
+        <td>-</td>
+        <td>12 mtr. & above</td>
+        <td>Small-scale household industries as per RPCB norms.</td>
+        <td>As per RPCB regulations</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Motor vehicle repairing workshop / garages</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Workshops/garages located within convenient shopping centre.</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Multipurpose shop</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Shops located within convenient shopping centre.</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Municipal / State / Central Govt. office</td>
+        <td>As per concerned department requirement</td>
+        <td>12 mtr. & above</td>
+        <td>Premises used for government offices.</td>
+        <td>Government offices, Watch & ward residence (30 sq.m.), Retail shop, Chemist, Stationery, Consumer store (20 sq.m. each), Canteen, Bank counter, Post office counter</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Museum</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for storage & exhibition of antiques, art, natural history.</td>
+        <td>Museum, Exhibition & Art gallery, Auditorium, Open air theatre, Watch & ward residence (30 sq.m.), Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Music, Dance & Drama training centre</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for imparting training in performing arts.</td>
+        <td>Training centre, Exhibition & Art gallery, Auditorium, Open air theatre, Watch & ward residence (30 sq.m.), Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Open air theatre</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Audience seating & stage for performances under open sky.</td>
+        <td>Open air theatre, Watch & ward residence (30 sq.m.), Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Orphanage (with/without school)</td>
+        <td>500 sq.m.</td>
+        <td>12–18 mtr. & above</td>
+        <td>Boarding of children without parents; may or may not have education facilities.</td>
+        <td>Boarding house, School, Watch & ward residence (30 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Petrol & diesel pump (without service station)</td>
+        <td>As per MOST norms</td>
+        <td>24 mtr. & above</td>
+        <td>Sale of petroleum products to consumers.</td>
+        <td>Petrol pump, Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Printing press</td>
+        <td>200 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Facility for printing & publishing.</td>
+        <td>Press hall, Watch & ward, Toilets</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Restaurants</td>
+        <td>500 – 700 sq.m.</td>
+        <td>24 mtr. & above</td>
+        <td>Premises serving food items commercially with seating.</td>
+        <td>Restaurant</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Social cultural institute</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Premises for socio-cultural activities on non-commercial basis.</td>
+        <td>Institute, Watch & ward residence (30 sq.m.), Snack stall, Restaurant, Bank counter, Canteen, Auditorium, Library, Music & Drama centre, Museum, Art gallery</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Residential</td>
+        <td>Health Resort</td>
+        <td>2,500 sq.m.</td>
+        <td>18 mtr.</td>
+        <td>Premise for health improvement facilities.</td>
+        <td>As decided by statutory committee</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Auditorium</td>
+        <td>2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Enclosed space for audience seating and stage for performances (concerts, plays, recitals, etc.)</td>
+        <td>Museum, Exhibition centre, Art gallery, Auditorium, Open air theatre, Watch & ward residence (30 sq.m.), Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Auto / Thela / Rickshaw stand</td>
+        <td>2×1.5 m per auto<br>2×2 m per thela<br>2×1.5 m per rickshaw</td>
+        <td>-</td>
+        <td>Space for parking of auto / thela / rickshaw with or without fee</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Bakeries & confectionaries</td>
+        <td>300 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Premises with electric oven/bhatti for bakery production & sales</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Bank</td>
+        <td>250 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Premises for banking functions and operations</td>
+        <td>Bank, Watch & ward residence (30 sq.m.), Commercial office, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Boarding house & Lodging house</td>
+        <td>300 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Rooms let out long-term (boarding house) or lodging for less than 50 persons</td>
+        <td>Boarding/Lodging house, Watch & ward residence (30 sq.m.), Barber, Launderer, Snack stall (15 sq.m.)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Bus terminal</td>
+        <td>10,000 sq.m.</td>
+        <td>30 mtr. & above</td>
+        <td>Premises for parking buses and passenger facilities</td>
+        <td>Bus terminal, Snack stall, Admin office, Commercial areas</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Cinema / Multiplex</td>
+        <td>Cinema: 1,500 sq.m.<br>Multiplex: 2,000 sq.m.</td>
+        <td>30 mtr. & above<br>24 mtr.</td>
+        <td>Premises for movie projection with covered seating</td>
+        <td>Cinema, Watch & ward residence, Admin office, Snack stall, Museum, Auditorium</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>College (Technical/Medical)</td>
+        <td>As per AICTE / MCI norms</td>
+        <td>30 mtr. & above</td>
+        <td>Premises for higher/professional education under a university</td>
+        <td>College, Residential flats (staff), Hostel, Shops (15 sq.m.), Canteen, Bank, Auditorium, Games hall, Swimming pool, Playground, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Commercial office</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Offices of profit-making organizations</td>
+        <td>Office, Retail & service shops, Restaurant, Bank, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Gas godown (with supply office) / Gas booking office</td>
+        <td>Godown: 6,000 sq.m.<br>Booking office: 9 sq.m.</td>
+        <td>Godown: 18 mtr. & above<br>Booking office: 9 mtr. & above</td>
+        <td>Gas storage (200 m away from residences) or booking office (no storage)</td>
+        <td>Gas godown, Watch & ward residence, Caretaker office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Godowns & warehousing (non-inflammable)</td>
+        <td>1,500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Premises for wholesale trade, storage, loading/unloading</td>
+        <td>Wholesale shop, Godown, Storage, Commercial office (restricted to 25% of floor area)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Govt. / Institutional office</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Offices of Union/State govt.</td>
+        <td>Govt./PSU offices, Watch & ward residence, Shops (20 sq.m.), Canteen, Bank counter</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Group housing / plot</td>
+        <td>As per Building Regulations 2010</td>
+        <td>As per regulations</td>
+        <td>Residential flats with amenities like shops, park, utilities</td>
+        <td>Flats, Retail shops, Crèche, Day care, Grocery, Stationery, Chemist</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Guest houses</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Housing for short duration</td>
+        <td>Guest house, Hostel, Boarding/Lodging house, Watch & ward residence, Shops, Dining hall, Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Health centre (up to 20 beds)</td>
+        <td>2,000 – 3,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Indoor/outdoor treatment, managed by public/charitable organizations</td>
+        <td>Health centre, Watch & ward residence, Chemist</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Hotels</td>
+        <td>750 sq.m.</td>
+        <td>24 mtr. & above</td>
+        <td>Lodging for ≥15 persons, with/without meals</td>
+        <td>Hotel, Shops (restricted to 5% floor area), Restaurant</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Library</td>
+        <td>500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Collection of books for public use</td>
+        <td>Library, Watch & ward residence, Canteen, Exhibition & Art gallery, Auditorium</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Medical clinic</td>
+        <td>200 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Outdoor treatment by doctor(s) or polyclinic</td>
+        <td>Clinic</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Motor driving training centre</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for driving training</td>
+        <td>Training centre, Watch & ward residence, Snack stall</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Nursing home</td>
+        <td>1,000 – 2,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Indoor/outdoor treatment up to 30 beds (managed commercially)</td>
+        <td>Nursing home, Watch & ward residence, Chemist</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Park / open space</td>
+        <td>-</td>
+        <td>-</td>
+        <td>Recreation, leisure, landscaping, toilets, fencing, etc.</td>
+        <td>Park, Snack stall (for parks >1.0 ha)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Parking sites</td>
+        <td>As per scheme</td>
+        <td>As per scheme</td>
+        <td>Public/private parking lots</td>
+        <td>Parking</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Petrol pump (with service station / without)</td>
+        <td>With: 36×36 m<br>Without: 20×20 m</td>
+        <td>24 mtr. & above</td>
+        <td>Sale of petroleum, with/without automobile servicing</td>
+        <td>Petrol pump, Snack stall, Automobile repair shop</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Police station / Police post</td>
+        <td>500 – 1,000 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Local police facilities</td>
+        <td>Police station, Police post, Essential staff housing</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Post office</td>
+        <td>200 – 500 sq.m.</td>
+        <td>12 mtr. & above</td>
+        <td>Postal services for public</td>
+        <td>Post office, Telegraph office, Watch & ward residence, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Railway freight godown</td>
+        <td>As per Railway dept. norms</td>
+        <td>-</td>
+        <td>Storage of goods transported by railways</td>
+        <td>-</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Technical training institute</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Technical education/training facilities</td>
+        <td>Training centre, Staff flats, Shops, Canteen, Bank, Auditorium, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Research & Development</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for R&D in specific fields</td>
+        <td>R&D centre, Watch & ward residence, Hostel, Staff flats, Canteen, Bank, Library, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Restaurant</td>
+        <td>500 – 700 sq.m.</td>
+        <td>24 mtr. & above</td>
+        <td>Commercial food service with/without covered seating</td>
+        <td>Restaurant</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Service centre & service industry</td>
+        <td>500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Repair shops for automobiles, appliances, materials</td>
+        <td>Repair shops, Cottage industry, Gas godown, Office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Financial institution</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for financial/stock trading activities</td>
+        <td>Stock trading, Forex, Brokerage offices, Banks</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Technical training centre</td>
+        <td>1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Facilities for technical/vocational training</td>
+        <td>Training centre, Staff flats, Shops, Canteen, Bank, Auditorium, Post office</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Telephone exchange / centre</td>
+        <td>As per govt. norms</td>
+        <td>12 mtr. & above</td>
+        <td>Central operation of telephone system for an area</td>
+        <td>Telephone exchange, Watch & ward residence, Canteen</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Warehousing & covered storage</td>
+        <td>500 – 1,000 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Exclusive storage of goods/commodities with loading facilities</td>
+        <td>Storage, Godown, Wholesale outlet, Admin & sales office, Watch & ward</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+      <tr>
+        <td>Commercial</td>
+        <td>Wholesale trade</td>
+        <td>1,500 sq.m.</td>
+        <td>18 mtr. & above</td>
+        <td>Wholesale premises with storage/loading facilities</td>
+        <td>Wholesale shop, Godown, Storage, Commercial office (25% limit)</td>
+        <td><button class="copy-btn">📋 Copy</button></td>
+      </tr>
+<tr>
+  <td>Commercial</td>
+  <td>Bus terminal</td>
+  <td>As per RSRTC requirement</td>
+  <td>18 mtr. & above</td>
+  <td>Premises used by transport agencies for parking, maintenance & repair of buses, may include workshop</td>
+  <td>Bus depot, Workshop, Watch & ward residence (upto 30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Children’s traffic park</td>
+  <td>100 sq.m.</td>
+  <td>12 mtr. & above</td>
+  <td>Park with facilities to educate children on traffic & signalling</td>
+  <td>Traffic park, Watch & ward residence (upto 30 sq.m.), Snack stall, Museum, Auditorium</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Coal / Wood / Timber yard</td>
+  <td>1,000 sq.m.</td>
+  <td>24 mtr. & above</td>
+  <td>Open storage & trading of coal, wood, timber</td>
+  <td>Trading/storage facilities, Watch & ward flat (upto 30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Cold storage / Chilling plant</td>
+  <td>1,000 sq.m.</td>
+  <td>30 mtr. & above</td>
+  <td>Storage of perishables using mechanical/electrical cooling systems</td>
+  <td>Cold storage, Watch & ward residence (upto 30 sq.m.), Caretaker office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Community hall</td>
+  <td>2,500 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Enclosed space for social & cultural activities of a residential area</td>
+  <td>Community hall, Watch & ward residence (upto 30 sq.m.), Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Cultural information centre</td>
+  <td>1,000 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Premises with facilities for cultural & information services</td>
+  <td>Info centre, Watch & ward residence (upto 30 sq.m.), Hostel, Canteen, Bank counter, Auditorium (upto 500 seats), Library, Exhibition & Art gallery</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Exhibition centre & Art gallery</td>
+  <td>10,000 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Facilities for exhibitions & display of paintings, sculptures, handicrafts, etc.</td>
+  <td>Exhibition centre, Art gallery, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Gas installation & gas works</td>
+  <td>1,000 sq.m.</td>
+  <td>24 mtr. & above</td>
+  <td>Storage facilities for gas cylinders & welding works</td>
+  <td>Buffer space required around installation</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Hospitals</td>
+  <td>1,000 sq.m.</td>
+  <td>24 mtr. & above</td>
+  <td>General/specialized medical facilities for indoor & outdoor patients</td>
+  <td>Hospital, Staff flats, Hostel, Medical college, Retail shops (grocery, chemist, barber, etc.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Hotel / Transit visitors’ house</td>
+  <td>Hotel: 750 sq.m., Transit: 1,000 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Rooms let out (attached to institutions or otherwise) for long/short term</td>
+  <td>Hotel, Commercial office, Retail & service shop (restricted to 5% floor area), Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Junk yard</td>
+  <td>500 sq.m.</td>
+  <td>12 mtr. & above</td>
+  <td>Storage & sale/purchase of waste goods & materials</td>
+  <td>Junk yard, Watch & ward residence, Sales office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Motor garage & workshop</td>
+  <td>500 sq.m.</td>
+  <td>12 mtr. & above</td>
+  <td>Premises for repair & servicing of automobiles</td>
+  <td>Workshop, Watch & ward residence (upto 30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Open air theatre</td>
+  <td>2,500 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Audience seating & stage for performances under open sky</td>
+  <td>Open air theatre, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Religious buildings</td>
+  <td>500–1,000 sq.m.</td>
+  <td>12 mtr. & above</td>
+  <td>Premises for worship/services of God, various religions (temple, mosque, church, gurudwara, ashram, etc.)</td>
+  <td>Temple, Mosque, Church, Gurudwara, Synagogue, Ashram, Bathing tank, Dargah, Charitable dispensary, Library (permission from Collector required)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Research & Development centre</td>
+  <td>1,000 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Facilities for research in specific fields</td>
+  <td>R&D centre, Watch & ward residence (upto 30 sq.m.), Staff flats, Hostel, Canteen, Bank counter, Library, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Vocational training institute</td>
+  <td>1,000 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Training facilities for short-term professional/trade courses</td>
+  <td>Vocational training institute, Watch & ward residence (upto 30 sq.m.), Hostel, Shops (15 sq.m.), Canteen, Library</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Voluntary health service</td>
+  <td>500 sq.m.</td>
+  <td>12 mtr. & above</td>
+  <td>Medical facilities (incl. blood banks, dispensaries, camps) by voluntary institutions</td>
+  <td>Voluntary health service, Watch & ward residence (upto 30 sq.m.), Admin office, Dispensary, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Commercial</td>
+  <td>Warehousing / storage godowns of perishables</td>
+  <td>1,500 sq.m.</td>
+  <td>18 mtr. & above</td>
+  <td>Exclusive warehousing/storage of perishables, with loading/unloading facilities (road or rail transport)</td>
+  <td>Storage, Godown, Warehousing, Watch & ward residence (upto 30 sq.m.), Wholesale outlet, Admin & sales office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Auditorium</td>
+  <td>0.15 ha</td>
+  <td>18 mtr. & above</td>
+  <td>Enclosed space for audience seating & stage for performances (concerts, plays, recitals, functions, etc.)</td>
+  <td>Museum, Exhibition centre, Art gallery, Auditorium, Open air theatre, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Boarding house & Lodging house</td>
+  <td>0.05 ha</td>
+  <td>18 mtr. & above</td>
+  <td>Boarding house = long-term lodging; Lodging house = short-term lodging (&lt;50 persons)</td>
+  <td>Boarding/Lodging house, Watch & ward residence (upto 30 sq.m.), Barber, Launderer, Snack stall (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Bus depot & Workshop</td>
+  <td>0.15 ha (as per RSRTC)</td>
+  <td>18 mtr. & above</td>
+  <td>Premises for bus parking, maintenance & repair (with/without workshop)</td>
+  <td>Bus depot, Workshop, Watch & ward residence (upto 30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Bus terminal</td>
+  <td>1.0 ha (as per RSRTC)</td>
+  <td>30 mtr. & above</td>
+  <td>Premises for bus parking (short duration) with passenger facilities</td>
+  <td>Bus terminal, Snack stall, Admin office, Other offices</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Cinema</td>
+  <td>0.15 ha</td>
+  <td>30 mtr. & above</td>
+  <td>Facilities for projection of movies/stills with covered seating</td>
+  <td>Cinema, Watch & ward residence (upto 30 sq.m.), Admin office, Snack stall, Museum, Auditorium</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Cold storage & Ice factory</td>
+  <td>0.10 – 0.15 ha</td>
+  <td>30 mtr. & above</td>
+  <td>Storage of perishables using mechanical/electrical devices</td>
+  <td>Cold storage, Watch & ward residence (upto 30 sq.m.), Caretaker office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Commercial complex</td>
+  <td>0.10 ha</td>
+  <td>12 mtr. & above</td>
+  <td>Training facilities (stenography, record keeping, correspondence)</td>
+  <td>Commercial & Secretarial training centre, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Dispensary</td>
+  <td>0.08 – 0.12 ha</td>
+  <td>12 mtr. & above</td>
+  <td>Medical advice & medicines by public/charitable institutions</td>
+  <td>Dispensary, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Gas godowns</td>
+  <td>As per petroleum norms</td>
+  <td>-</td>
+  <td>Premises for storing cylinders of cooking/industrial gas</td>
+  <td>Gas godown, Watch & ward residence (upto 30 sq.m.), Caretaker office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Guest house</td>
+  <td>0.05 ha</td>
+  <td>18 mtr. & above</td>
+  <td>Housing for staff of govt., semi-govt., PSU or private companies for short stay</td>
+  <td>Guest house, Watch & ward residence (upto 30 sq.m.), Barber, Launderer, Snack stall (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Hostels</td>
+  <td>0.05 ha</td>
+  <td>18 mtr. & above</td>
+  <td>Premises with rooms (linked to institutions or otherwise) let on long-term basis</td>
+  <td>Hostel, Watch & ward residence (upto 30 sq.m.), Barber, Launderer, Snack stall (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Loading / unloading spaces</td>
+  <td>As per parking zone of scheme</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Nursing home</td>
+  <td>0.10 – 0.20 ha</td>
+  <td>18 mtr. & above</td>
+  <td>Indoor/outdoor treatment up to 30 beds (managed commercially)</td>
+  <td>Nursing home, Watch & ward residence (upto 30 sq.m.), Chemist (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Park</td>
+  <td>0.10 ha or more</td>
+  <td>-</td>
+  <td>Recreational leisure spaces (lawns, green areas, toilets, parking, fencing, etc.)</td>
+  <td>Park, Snack stall (for parks ≥1.0 ha)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Parking</td>
+  <td>As per scheme norms</td>
+  <td>-</td>
+  <td>Premises for public/private parking (commercial or non-commercial)</td>
+  <td>Parking</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Petrol & diesel pump (without service station)</td>
+  <td>20×20 m</td>
+  <td>24 mtr. & above</td>
+  <td>Sale of petroleum products</td>
+  <td>Petrol pump, Snack stall, Automobile repair shop</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Petrol & diesel pump (with service station)</td>
+  <td>36×36 m</td>
+  <td>24 mtr. & above</td>
+  <td>Sale of petroleum products + automobile servicing</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Public utilities</td>
+  <td>As per deptt. norms</td>
+  <td>-</td>
+  <td>Includes: Overhead tank, Underground tank, Oxidation pond, Septic tank, Sewage pumping station, Public toilets/urinals, Electric substation</td>
+  <td>Utilities, Solid waste centre, Dhobi ghat</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Restaurants</td>
+  <td>0.05 – 0.07 ha</td>
+  <td>24 mtr. & above</td>
+  <td>Commercial food service (covered/open seating)</td>
+  <td>Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Storage & depot (non-perishable & non-inflammable)</td>
+  <td>0.10 ha or more</td>
+  <td>18 mtr. & above</td>
+  <td>Exclusive warehousing/storage with loading/unloading facilities (road/rail transport)</td>
+  <td>Storage, Godown, Warehousing, Watch & ward residence (upto 30 sq.m.), Wholesale outlet, Admin & sales office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Warehousing</td>
+  <td>0.05 ha or more</td>
+  <td>12 mtr. & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Wholesale business establishment</td>
+  <td>0.02 – 0.05 ha</td>
+  <td>12 mtr. & above</td>
+  <td>Wholesale trade premises for sale/delivery to retailers, incl. storage & godowns</td>
+  <td>Wholesale shop, Godown, Storage, Commercial office (restricted to 25% floor area)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Auto / Thela / Rickshaw stand</td>
+  <td>2×1.5 m per Auto, 2×2 m per Thela, 2×1.5 m per Rickshaw</td>
+  <td>-</td>
+  <td>Parking of autos/thelas/rickshaws during non-commuting time</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Banks & financial institutions</td>
+  <td>0.025 hect.</td>
+  <td>12 mtr. & above</td>
+  <td>Offices for banking & financial operations</td>
+  <td>Bank, Office, Watch & ward residence (upto 30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Electric power plants</td>
+  <td>As per deptt. norms</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Exhibition centres & Art gallery</td>
+  <td>0.10 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>Premises for exhibitions & display of paintings, sculptures, handicrafts, etc.</td>
+  <td>Exhibition centre, Art gallery, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Flatted group industry</td>
+  <td>0.10 hect. & above</td>
+  <td>12 mtr. & above</td>
+  <td>Small industrial units (&lt;50 workers, non-hazardous), may be in multi-storeyed building</td>
+  <td>Cottage & small industries, Watch & ward residence (upto 30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Govt. / Semi-govt. / Private business establishment</td>
+  <td>0.10 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Hospitals</td>
+  <td>0.50 hect. or more</td>
+  <td>30 mtr. & above</td>
+  <td>General/specialized hospitals for indoor/outdoor patients</td>
+  <td>Hospital, Staff flats, Hostel, Medical college, Shops (grocery, chemist, barber, etc.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Indoor stadium</td>
+  <td>2.0 hect. or more</td>
+  <td>18 mtr. & above</td>
+  <td>Indoor stadium with play area, seating & facilities for players</td>
+  <td>Stadium, Govt. office (maintenance), Watch & ward residence (upto 30 sq.m.), Staff flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Industry (specific type)</td>
+  <td>As per industry deptt. norms</td>
+  <td>-</td>
+  <td>Industrial units for specific products (e.g., electronics)</td>
+  <td>Industrial unit, Admin office, Sales outlet, Staff flat (upto 5% floor area or 80 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Junk yard</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Premises for storage/sale of waste goods & materials (covered/semi/open)</td>
+  <td>Junk yard, Watch & ward residence, Sales office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Medical centres</td>
+  <td>0.05 hect.</td>
+  <td>12 mtr. & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Motor garage & workshop</td>
+  <td>45 sq.m.</td>
+  <td>-</td>
+  <td>Servicing & repair of automobiles</td>
+  <td>Workshop, Watch & ward residence (upto 30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Museum</td>
+  <td>0.10 – 0.15 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>Storage & exhibition of antiques, art, natural history, etc.</td>
+  <td>Museum, Art gallery, Auditorium, Open air theatre, Watch & ward residence (upto 30 sq.m.), Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Night shelter</td>
+  <td>0.05 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>Temporary night accommodation (free or nominal charges), run by govt./voluntary bodies</td>
+  <td>Night shelter</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Outdoor stadium</td>
+  <td>2.0 hect. or more</td>
+  <td>18 mtr. & above</td>
+  <td>-</td>
+  <td>Stadium, Govt. office (maintenance), Watch & ward residence (upto 30 sq.m.), Staff flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Railway freight godown</td>
+  <td>As per Railway norms</td>
+  <td>-</td>
+  <td>Storage of goods transported by railways</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Religious buildings</td>
+  <td>0.05 hect.</td>
+  <td>9 mtr. & above</td>
+  <td>Places of worship of various religions (temple, mosque, church, gurudwara, ashram, etc.)</td>
+  <td>Temple, Mosque, Church, Gurudwara, Synagogue, Ashram, Bathing tank, Dargah, Charitable dispensary, Library</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Research & Development centre</td>
+  <td>0.10 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>Facilities for research in specific fields</td>
+  <td>R&D centre, Watch & ward residence (upto 30 sq.m.), Staff flats, Hostel, Canteen, Bank counter, Library, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Service stations</td>
+  <td>As per scheme</td>
+  <td>-</td>
+  <td>Repair shops for autos, electrical appliances, building materials, etc.</td>
+  <td>Retail, Repair & service shops, Cottage industry, Gas godown, Commercial office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Sewage disposal works</td>
+  <td>As per deptt. requirement</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Vocational training institute</td>
+  <td>0.10 hect.</td>
+  <td>18 mtr. & above</td>
+  <td>Training for short-term professional/trade courses (incl. work-centres)</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Wholesale business establishment</td>
+  <td>0.02 – 0.05 hect.</td>
+  <td>12 mtr. & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Industrial</td>
+  <td>Workshops / Garages</td>
+  <td>0.02 – 0.03 hect.</td>
+  <td>12 mtr. & above</td>
+  <td>Premises for servicing & repair of automobiles</td>
+  <td>Workshop, Watch & ward residence (upto 30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Hospital (i) 500+ beds (ii) 201–500 beds (iii) 101–200 beds (iv) up to 100 beds</td>
+  <td>60,000 sq.m.<br>40,000–60,000 sq.m.<br>25,000–40,000 sq.m.<br>10,000–25,000 sq.m. (may be relaxed if land unavailable)</td>
+  <td>24 & above</td>
+  <td>Premises for medical treatment (general/specialized) for indoor & outdoor patients</td>
+  <td>Hospital, Staff flats, Hostel, Medical college, Retail shops (grocery, chemist, books, barber, vegetable)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Health centre (incl. family welfare)</td>
+  <td>1,500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises with indoor/outdoor treatment up to 20 beds, run by public/charity</td>
+  <td>Health centre, Nursing home, Watch & ward (30 sq.m.), Chemist (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Nursing/Maternity home, Polyclinic</td>
+  <td>750 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises with up to 15 beds, run by doctor(s)</td>
+  <td>Nursing home, Health centre, Watch & ward (30 sq.m.), Chemist (15 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Dispensary</td>
+  <td>250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Medical advice & medicines, run by public/charity</td>
+  <td>Dispensary, Soft drink & Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Clinic</td>
+  <td>750 sq.m.</td>
+  <td>12 & above</td>
+  <td>Premises for OPD by doctor(s); polyclinic if group of doctors</td>
+  <td>Clinic</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Clinical laboratory</td>
+  <td>250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Premises for diagnostic tests</td>
+  <td>Lab, Soft drink & Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Voluntary health service</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Treatment for OPD, blood banks, camps (charitable)</td>
+  <td>Health service, Watch & ward, Admin office, Dispensary, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Specialised hospital</td>
+  <td>10,000 sq.m.</td>
+  <td>30 & above</td>
+  <td>Hospital for contagious/specific diseases</td>
+  <td>Specialised hospital, Staff flats, Hostel, Retail shops (grocery, barber, launderer, vegetable)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Veterinary hospital (pets/birds)</td>
+  <td>10,000 sq.m.</td>
+  <td>30 & above</td>
+  <td>Treatment of sick animals/birds</td>
+  <td>Vet hospital, Staff flats, Hostel, Vet college, Shops</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Retail/Repair shop (inconvenience shopping)</td>
+  <td>50 sq.m.</td>
+  <td>18 & above</td>
+  <td>Retail, repair, service shops for household/electronic goods</td>
+  <td>Retail, Repair, Service, Restaurant, Clinic</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>University</td>
+  <td>As per UGC norms</td>
+  <td>30 & above</td>
+  <td>Higher education with multiple faculties, degrees, hostels</td>
+  <td>Colleges, Flats, Hostel, Retail shops (20 sq.m.), Library, Bank, Post office, Auditorium, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Bank</td>
+  <td>250 sq.m.</td>
+  <td>18 & above</td>
+  <td>Banking office</td>
+  <td>Bank, Watch & ward, Commercial office, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Guest house</td>
+  <td>500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Housing staff of Govt., PSU, Pvt. Co. (short stay)</td>
+  <td>Hostel, Guest house, Boarding/Lodging, Watch & ward, Barber, Launderer, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Restaurant</td>
+  <td>5,000–7,500 sq.m.</td>
+  <td>24 & above</td>
+  <td>Commercial food service</td>
+  <td>Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Playground</td>
+  <td>1,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Outdoor games, may include landscaping, toilets, parking</td>
+  <td>Playground</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>College (Medical, Engg., General)</td>
+  <td>As per council norms</td>
+  <td>30 & above</td>
+  <td>Premises for UG/PG/professional courses</td>
+  <td>College, Flats, Hostel, Retail shops (15 sq.m.), Canteen, Bank, Auditorium, Games, Pool, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Schools (Nursery, Primary, Secondary, Sr. Secondary)</td>
+  <td>500–1,000 sq.m. (as per edu dept.)</td>
+  <td>9–12<br>12<br>18<br>18</td>
+  <td>Education up to XII standard</td>
+  <td>School, Flats, Hostel, Retail shops (15 sq.m.), Canteen, Bank, Auditorium, Games, Pool</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Library</td>
+  <td>500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Collection of books for reading/reference</td>
+  <td>Library, Watch & ward, Canteen, Exhibition, Auditorium</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Integrated residential/non-residential school</td>
+  <td>As per edu norms</td>
+  <td>18 & above</td>
+  <td>School up to XII std. with/without hostels, faculty residence</td>
+  <td>School, Flats, Hostel, Shops, Canteen, Bank, Auditorium, Games, Pool, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Crèche/Day care centre</td>
+  <td>250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Nursery care for infants (daytime)</td>
+  <td>Crèche, Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Veterinary institute</td>
+  <td>2,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>UG/PG education & research in vet. science</td>
+  <td>College, Flats, Hostel, Shops (20 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Library college (professional)</td>
+  <td>As per norms</td>
+  <td>18 & above</td>
+  <td>Specialized library (e.g., medical)</td>
+  <td>Library, Watch & ward, Canteen, Exhibition, Auditorium</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>R&D centre</td>
+  <td>1,000+ sq.m.</td>
+  <td>18 & above</td>
+  <td>Research facilities in any field</td>
+  <td>R&D centre, Flats, Hostel, Canteen, Bank, Library, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Hotel management institute</td>
+  <td>1,000 sq.m. (as per norms)</td>
+  <td>12 & above</td>
+  <td>Training for hotel management & work-centre</td>
+  <td>Institute, Watch & ward, Book shop, Chemist, Canteen, Bank, Auditorium, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Commercial & Secretarial training</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Training in stenography, office work</td>
+  <td>Training centre, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Social welfare centre</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Community development facilities (public/charity)</td>
+  <td>Centre, Watch & ward, Canteen, Exhibition-sale counter</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Multipurpose community hall</td>
+  <td>2,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for social & cultural activities</td>
+  <td>Hall, Watch & ward, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Yoga/Meditation/Naturopathy</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Self-attainment, spirituality, wellness</td>
+  <td>Yoga/Meditation/Naturopathy, Watch & ward, Guest house/Hostel, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Music/Dance/Drama training centre</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Training in performing arts</td>
+  <td>Training centre, Watch & ward, Canteen, Auditorium</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Recreational club (city/community level)</td>
+  <td>5,000 – 2,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Social & recreational gatherings</td>
+  <td>Club, Watch & ward, Flats, Pool, Indoor/Outdoor games</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Indoor games stadium</td>
+  <td>2,500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Indoor stadium with play area, seating & facilities</td>
+  <td>Stadium, Govt. office, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Outdoor games stadium</td>
+  <td>20,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Outdoor stadium with pavilion, seating & facilities</td>
+  <td>Stadium, Govt. office, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Open air theatre</td>
+  <td>5,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Outdoor performance stage with seating</td>
+  <td>Museum, Exhibition, Auditorium, Theatre, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Banquet hall</td>
+  <td>1,000 sq.m.</td>
+  <td>-</td>
+  <td>Hall for public gatherings, marriages, functions</td>
+  <td>Banquet hall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Auditorium</td>
+  <td>5,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Enclosed stage & seating for performances</td>
+  <td>Museum, Exhibition, Auditorium, Theatre, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Museum</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Storage & display of antiques, art, history</td>
+  <td>Museum, Exhibition, Auditorium, Theatre, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Exhibition centre & Art gallery</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Exhibition & display of paintings, handicrafts, etc.</td>
+  <td>Exhibition, Gallery, Museum, Auditorium, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Planetarium</td>
+  <td>2,000+ sq.m.</td>
+  <td>18 & above</td>
+  <td>Study of planets with necessary equipment</td>
+  <td>Planetarium, Watch & ward, Cafeteria</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Cultural & Information centre</td>
+  <td>1,500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Cultural/information services at state/national level</td>
+  <td>Centre, Watch & ward, Hostel, Canteen, Bank, Auditorium (500), Library, Exhibition</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Social & Cultural institute</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Socio-cultural activities (non-commercial)</td>
+  <td>Institute, Watch & ward, Snack stall, Restaurant, Bank, Canteen, Auditorium, Library, Music, Museum, Exhibition</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Conference hall/centre</td>
+  <td>2,000 sq.m.</td>
+  <td>24 & above</td>
+  <td>Premises for meetings, symposium, conferences</td>
+  <td>Conference centre, Watch & ward, Flats, Restaurant, Bank, Post office, Library, Exhibition</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Convention centre</td>
+  <td>City level (as required)</td>
+  <td>-</td>
+  <td>Premises for international/national conferences</td>
+  <td>Convention centre, Watch & ward, Restaurant, Bank, Post office, Library, Exhibition, Golf course</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Night shelter</td>
+  <td>500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Temporary night stay (free/token)</td>
+  <td>Night shelter</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Anganwadi</td>
+  <td>250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Service centre for children, mothers (ICDS scheme)</td>
+  <td>Kitchen, Toilet, Hall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Dharamshala</td>
+  <td>500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Temporary accommodation (no-profit)</td>
+  <td>Dharamshala, Barber, Launderer, Snack bar</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Adult education centre</td>
+  <td>200–250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Formal education & training for adults</td>
+  <td>Adult education, Community centre</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Reformatory</td>
+  <td>500–750 sq.m.</td>
+  <td>12 & above</td>
+  <td>Behavioural reform centre</td>
+  <td>Reformatory, Orphanage, Flats, Hostel, Shops</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Orphanage</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Boarding for children without parents (may include school)</td>
+  <td>Orphanage, Hostel, Flats, Primary school</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Old age home / Physically challenged / Hostel for working men/women</td>
+  <td>250 sq.m.</td>
+  <td>12 & above</td>
+  <td>Boarding & care for elderly/disabled/working people</td>
+  <td>Care home, Flats, School, Recreation, Library, Health, Gym, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Religious buildings</td>
+  <td>-</td>
+  <td>12 & above</td>
+  <td>Worship premises (temple, mosque, church, etc.)</td>
+  <td>Religious premises, Charitable dispensary, Library</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Dhobi ghat / Machine laundry</td>
+  <td>As per site (water/drainage req.)</td>
+  <td>-</td>
+  <td>Laundry premises</td>
+  <td>Tanks, Septic tank, Sewerage, Public toilet, Sub-station</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Fire post</td>
+  <td>200 sq.m.</td>
+  <td>12 & above</td>
+  <td>Small firefighting facility (low scale)</td>
+  <td>Fire post</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Fire station</td>
+  <td>10,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Firefighting facility for large area; may include staff housing</td>
+  <td>Fire station, Flats, Hostel, Workshop</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Fire training institute</td>
+  <td>30,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Training for emergency/fire handling</td>
+  <td>Training centre, Flats, Hostel, Grounds, Fire station, Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Disaster management centre</td>
+  <td>10,000 sq.m. + 20,000 sq.m. open area</td>
+  <td>18 & above</td>
+  <td>Training & backup facilities for disaster/emergencies</td>
+  <td>Training centre, Open grounds, Relief camps, Communication centre, Flats, Hostel, Fire station</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Police post</td>
+  <td>500+ sq.m.</td>
+  <td>12 & above</td>
+  <td>Small local police facility (temporary)</td>
+  <td>Police post, Staff housing</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Police station</td>
+  <td>5,000–1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Full-scale local police office</td>
+  <td>Police station, Staff housing</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>District police office & battalion</td>
+  <td>10,000 sq.m.</td>
+  <td>-</td>
+  <td>Offices for paramilitary forces</td>
+  <td>Police office, Civil defence, Flats, Hostel, Playground, Canteen, Bank</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Police line</td>
+  <td>20,000 sq.m.</td>
+  <td>-</td>
+  <td>Work/residential area for paramilitary forces</td>
+  <td>Police line & related facilities</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Jail</td>
+  <td>50,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Prison for detention & reform (shifted to rural if possible)</td>
+  <td>Jail</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Police training institute/college (incl. central forces)</td>
+  <td>50,000 sq.m.</td>
+  <td>30 & above</td>
+  <td>Training institute for paramilitary forces</td>
+  <td>Training institute, Flats, Hostel, Shops (20 sq.m.), Canteen, Bank, Auditorium, Games, Pool, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Police firing range</td>
+  <td>-</td>
+  <td>30 & above</td>
+  <td>Firing practice facility (temporary structures)</td>
+  <td>Firing range</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Traffic & police control room</td>
+  <td>As per requirement</td>
+  <td>-</td>
+  <td>Temporary facility for traffic & law/order</td>
+  <td>Control room</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Civil defence/home guard</td>
+  <td>10,000 sq.m. or less</td>
+  <td>24 & above</td>
+  <td>Facilities for civilian defence</td>
+  <td>Civil defence, Flats, Hostel, Playground</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Forensic science lab</td>
+  <td>500–7,500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Medical knowledge applied to legal issues</td>
+  <td>Forensic lab</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Post office counter (without delivery)</td>
+  <td>500 sq.m.</td>
+  <td>9 & above</td>
+  <td>Counters only, no delivery</td>
+  <td>Post office, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Post & telegraph (booking + delivery)</td>
+  <td>1,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Postal & telecom with delivery</td>
+  <td>Post office, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>General & head post office</td>
+  <td>2,500 sq.m.</td>
+  <td>18 & above</td>
+  <td>Postal/telecom hub for attached branches</td>
+  <td>Head/GPO, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Telephone exchange</td>
+  <td>2,500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Central operation of telephone system</td>
+  <td>Exchange, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Radio & TV station</td>
+  <td>2,000–3,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Facilities for recording, broadcasting, transmission</td>
+  <td>Radio/TV station, Watch & ward, Hostel, Canteen, Library</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Transmission tower/wireless station</td>
+  <td>1,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Tower for communication</td>
+  <td>Tower, Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Satellite & telecom centre</td>
+  <td>2,000–3,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Research on satellite/telecom technology</td>
+  <td>Centre, Observatory, Flats, Canteen, Lab</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Observatory & weather office</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Research/forecasting of weather</td>
+  <td>Observatory, Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Motor driving school</td>
+  <td>1,000+ sq.m.</td>
+  <td>18 & above</td>
+  <td>Automobile driving training</td>
+  <td>Driving centre, Watch & ward, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Road/Rail/Air booking office</td>
+  <td>25 sq.m. per counter</td>
+  <td>12 & above</td>
+  <td>Ticket booking & reservation offices</td>
+  <td>Booking office, Storage</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Cremation/Burial ground</td>
+  <td>Identified non-residential sites</td>
+  <td>12 & above</td>
+  <td>Cremation/burial premises</td>
+  <td>Cremation/Burial ground, Shops (wood, flowers), Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Swimming pool</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Swimming with spectator seating</td>
+  <td>Pool, Flats, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Post & telegraph office</td>
+  <td>1,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Public postal/telecom premises</td>
+  <td>Post office, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Health centre (up to 20 beds)</td>
+  <td>2,000–3,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Indoor/outdoor treatment up to 30 beds (non-commercial)</td>
+  <td>Health centre, Nursing home, Watch & ward, Chemist</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Shooting range</td>
+  <td>200,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Shooting practice/sports facilities</td>
+  <td>Stadium, Govt. office, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Recreational club (community level)</td>
+  <td>500–2,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Social/recreational purposes</td>
+  <td>Club, Watch & ward, Flats, Pool, Indoor/Outdoor games</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Motor garage & workshop</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>Automobile servicing/repair</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Public & Semi Public</td>
+  <td>Public utility buildings</td>
+  <td>As per deptt. norms</td>
+  <td>-</td>
+  <td>Utilities like tanks, ponds, septic, sewage, sub-station, waste collection</td>
+  <td>Utility premises</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Satellite & telecom centre</td>
+  <td>2,000–3,000</td>
+  <td>18 & above</td>
+  <td>Research on satellite/telecom technology</td>
+  <td>Centre, Observatory, Flats, Canteen, Lab</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Observatory & weather office</td>
+  <td>1,000</td>
+  <td>18 & above</td>
+  <td>Research/forecasting of weather</td>
+  <td>Observatory, Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Motor driving school</td>
+  <td>1,000+</td>
+  <td>18 & above</td>
+  <td>Automobile driving training</td>
+  <td>Driving centre, Watch & ward, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Road/Rail/Air booking office</td>
+  <td>25 sq.m. per counter</td>
+  <td>12 & above</td>
+  <td>Ticket booking & reservation offices</td>
+  <td>Booking office, Storage</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Cremation/Burial ground</td>
+  <td>Identified non-residential sites</td>
+  <td>12 & above</td>
+  <td>Cremation/burial premises</td>
+  <td>Cremation/Burial ground, Shops (wood, flowers), Watch & ward</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Swimming pool</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Swimming with spectator seating</td>
+  <td>Pool, Flats, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Post & telegraph office</td>
+  <td>1,000</td>
+  <td>12 & above</td>
+  <td>Public postal/telecom premises</td>
+  <td>Post office, Watch & ward, Canteen</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Health centre (up to 20 beds)</td>
+  <td>2,000–3,000</td>
+  <td>12 & above</td>
+  <td>Indoor/outdoor treatment up to 30 beds (non-commercial)</td>
+  <td>Health centre, Nursing home, Watch & ward, Chemist</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Shooting range</td>
+  <td>200,000</td>
+  <td>18 & above</td>
+  <td>Shooting practice/sports facilities</td>
+  <td>Stadium, Govt. office, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Recreational club (community level)</td>
+  <td>500–2,000</td>
+  <td>18 & above</td>
+  <td>Social/recreational purposes</td>
+  <td>Club, Watch & ward, Flats, Pool, Indoor/Outdoor games</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Motor garage & workshop</td>
+  <td>500</td>
+  <td>12 & above</td>
+  <td>Automobile servicing/repair</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Public utility buildings</td>
+  <td>As per deptt. norms</td>
+  <td>-</td>
+  <td>Utilities like tanks, ponds, septic, sewage, sub-station, waste collection</td>
+  <td>Utility premises</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Recreational club / Community recreational club</td>
+  <td>5,000–2,000</td>
+  <td>30 & above / 18 & above</td>
+  <td>Club for social & recreational gatherings</td>
+  <td>Club, Watch & ward, Flats, Swimming pool, Indoor & outdoor games</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Regional park</td>
+  <td>100,000</td>
+  <td>-</td>
+  <td>Large-scale park for recreation</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Restaurant / Cafeteria</td>
+  <td>500–10,000</td>
+  <td>18 & above</td>
+  <td>Commercial food service premises</td>
+  <td>Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Shooting range</td>
+  <td>10,000–20,000</td>
+  <td>18 & above</td>
+  <td>Facilities for shooting practice/sports</td>
+  <td>Stadium, Govt. office, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Special recreation & Special educational areas</td>
+  <td>4,000</td>
+  <td>30</td>
+  <td>Premises for special recreation/education</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Specialised parks / Maidan for Multi-use</td>
+  <td>4,000–6,000</td>
+  <td>-</td>
+  <td>Grounds for meetings, fairs, events</td>
+  <td>Meeting ground, Podium, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Sports training centre</td>
+  <td>20,000</td>
+  <td>30 & above</td>
+  <td>Training & promotion of community sports</td>
+  <td>Training centre, Flats, Shops, Hostel, Bank, Post office, Canteen, Stadiums, Pool, Playground</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Stadium (Indoor)</td>
+  <td>As per sports deptt. norms</td>
+  <td>-</td>
+  <td>Indoor stadium</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Stadium (Outdoor)</td>
+  <td>As per sports deptt. norms</td>
+  <td>-</td>
+  <td>Outdoor stadium</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Swimming pool</td>
+  <td>1,500–2,000</td>
+  <td>12 & above</td>
+  <td>Premises with swimming & spectator seating</td>
+  <td>Pool, Watch & ward, Flats, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Trade fair ground</td>
+  <td>5,000–10,000</td>
+  <td>24 & above</td>
+  <td>Premises for fairs, trade exhibitions</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Vending booth</td>
+  <td>9</td>
+  <td>-</td>
+  <td>Booth for daily-needs commodities</td>
+  <td>Vending booth</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Zoological garden</td>
+  <td>1,000</td>
+  <td>12 & above</td>
+  <td>Garden/park/aquarium for exhibition of animals/birds</td>
+  <td>Zoo, Bird sanctuary, Watch & ward, Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Eco-friendly housing</td>
+  <td>As per Building Regulations</td>
+  <td>-</td>
+  <td>Housing in compliance with township policy norms</td>
+  <td>As per township policy</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Agriculture</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Bird sanctuary</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Large park/forest for preservation & breeding of birds</td>
+  <td>Bird sanctuary, Watch & ward (30 sq.m.), Flats (maintenance staff), Retail shop, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Botanical garden</td>
+  <td>-</td>
+  <td>18 & above</td>
+  <td>Garden with plantation for research & exhibition</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Cremation & burial ground</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Facilities for last rites (burning/burial)</td>
+  <td>Burial ground, Cremation ground, Cemetery, Crematorium, Shops (wood, flowers, materials), Watch & ward (30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Fair ground</td>
+  <td>-</td>
+  <td>18 & above</td>
+  <td>Premises for exhibition, display, cultural events, animal markets, etc.</td>
+  <td>Fair ground, Flats (maintenance staff), Exhibition centre (temporary), Restaurant, Snack stall, Police post, Fire post, Bank/Post counters</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Farm house / Environment-friendly residence</td>
+  <td>3,000</td>
+  <td>18 & above</td>
+  <td>Low-coverage, low-rise structure for residential use</td>
+  <td>Farm house, Eco-residence, Watch & ward (30 sq.m.) – 30m setback on village roads</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Forest</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Thick natural or man-made flora (city forest)</td>
+  <td>Forest</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Govt. reserved area</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Government-owned reserved land</td>
+  <td>Govt. reserved area</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Historical monument</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Ancient structures/ruins</td>
+  <td>Historical monument</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Memorial</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Tomb, Samadhi, or memorial with visitor facilities</td>
+  <td>Tomb, Samadhi, Memorial, Watch & ward (30 sq.m.), Snack stall, Book/photo shop</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Orchard & nursery</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Rearing & sale of young plants</td>
+  <td>Nursery, Watch & ward (30 sq.m.), Temporary structures</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Outdoor stadium</td>
+  <td>20,000</td>
+  <td>12 & above</td>
+  <td>Outdoor sports facility</td>
+  <td>Stadium, Govt. office (maintenance), Watch & ward (30 sq.m.), Flats, Shops, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Picnic hut / Camping site</td>
+  <td>10,000</td>
+  <td>18 & above</td>
+  <td>Short-stay recreational premises for families</td>
+  <td>Picnic hut</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Playground</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Outdoor games area (landscaping, toilets, parking allowed)</td>
+  <td>Playground</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Police post</td>
+  <td>5,000+</td>
+  <td>12 & above</td>
+  <td>Local small-scale police facility</td>
+  <td>Police post, Essential staff housing</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Regional park</td>
+  <td>100,000</td>
+  <td>18 & above</td>
+  <td>Large-scale park/green</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Religious premises</td>
+  <td>5,000+</td>
+  <td>12 & above</td>
+  <td>Religious/spiritual premises across faiths</td>
+  <td>Temple, Mosque, Church, Gurudwara, Synagogue, Ashram, Tank, Dargah, Dispensary, Library</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Resort</td>
+  <td>10,000</td>
+  <td>18 & above</td>
+  <td>Tourist/residential leisure premises</td>
+  <td>Resort</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Dhaba</td>
+  <td>100</td>
+  <td>-</td>
+  <td>Roadside commercial food stall (covered/open)</td>
+  <td>Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Rural settlements</td>
+  <td>As per authority</td>
+  <td>-</td>
+  <td>Village habitation with facilities & services</td>
+  <td>Rural settlement & planned growth</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Specialised park / Ground</td>
+  <td>10,000</td>
+  <td>12 & above</td>
+  <td>Designated public-use ground (meetings, fairs, fun park, etc.)</td>
+  <td>Meeting ground, Podium, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Sports training institute</td>
+  <td>5,000</td>
+  <td>18 & above</td>
+  <td>Training/coaching centre for indoor/outdoor games incl. swimming</td>
+  <td>Training centre, Flats, Shops, Hostel, Bank, Post office, Canteen, Stadiums, Pool, Playground</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Swimming pool</td>
+  <td>2,000</td>
+  <td>9 & above</td>
+  <td>Premises with swimming & spectator facilities</td>
+  <td>Pool, Watch & ward, Flats, Restaurant</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Vending booth</td>
+  <td>9</td>
+  <td>9 & above</td>
+  <td>Booth for sale of daily-need commodities</td>
+  <td>Vending booth</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Water bodies</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Natural/artificial water feature</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Wireless & transmission</td>
+  <td>1,000</td>
+  <td>12 & above</td>
+  <td>Communication tower/transmission facility</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Yoga / Meditation / Spiritual / Religious discourse centre / Social Culture Centre</td>
+  <td>2,500</td>
+  <td>18 & above</td>
+  <td>Premises for meditation, self-attainment, cultural/religious discourse</td>
+  <td>Yoga/Meditation/Spiritual/Cultural centre, Watch & ward (30 sq.m.), Hostel, Guest house, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Aquarium</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Park/aquarium with animals, fish, species for study/exhibition</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>G2</td>
+  <td>Agriculture warehousing / Food storage</td>
+  <td>5,000</td>
+  <td>30 & above</td>
+  <td>Storage premises for agricultural produce/food items</td>
+  <td>Godown, Warehousing, Cold storage, Flats (employees), Small office (50 sq.m.) – with special permission</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Art & craft training centre</td>
+  <td>10,000–15,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Bird / Veterinary hospital</td>
+  <td>500 sq.m.</td>
+  <td>12 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Bus depot</td>
+  <td>5,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for bus parking, maintenance & repair (may include workshop)</td>
+  <td>Bus depot, Workshop, Watch & ward (30 sq.m.), Snack stall, Admin office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Cattle market</td>
+  <td>40,000 sq.m.</td>
+  <td>12</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Cold storage & milk chilling plant</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Storage of perishables with mechanical/electrical chilling</td>
+  <td>Cold storage, Watch & ward (30 sq.m.), Caretaker office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Dairy farm / Dairy plant</td>
+  <td>10,000–15,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Facilities for rearing & processing dairy products (may have temporary animal sheds)</td>
+  <td>Dairy farm, Watch & ward (30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Drive-in cinema</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Cinema with car audience & auditorium seating</td>
+  <td>Drive-in cinema, Watch & ward (30 sq.m.), Admin office, Restaurant, Snack stall</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Extractive industry</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Quarrying, stone crushing, lime kiln, brick kiln, mining, sub-soil extraction</td>
+  <td>Extractive & mining industry</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Flying club</td>
+  <td>10,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Training & fun rides on gliders/aircrafts; may include recreation & indoor games</td>
+  <td>Flying club, Watch & ward (30 sq.m.), Flats (staff), Pool, Indoor & outdoor games</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Jail</td>
+  <td>-</td>
+  <td>-</td>
+  <td>Premises for detention, confinement & reform of criminals</td>
+  <td>Jail</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Junk yard</td>
+  <td>500–700 sq.m.</td>
+  <td>12 & above</td>
+  <td>Premises for open/semi/covered storage & sale of waste materials</td>
+  <td>Junk yard, Watch & ward residence, Sales office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Motel</td>
+  <td>4,000 sq.m.</td>
+  <td>-</td>
+  <td>Premises catering to boarding, lodging, rest & recreation for road travellers</td>
+  <td>Motel</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>NCC / Scouts & Guides training</td>
+  <td>5,000+ sq.m.</td>
+  <td>18 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Naturopathy hospital / Yoga centre</td>
+  <td>10,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Petrol pump</td>
+  <td>1,296 sq.m.</td>
+  <td>24 & above</td>
+  <td>Premises for sale of petroleum products (with/without servicing)</td>
+  <td>Petrol pump, Snack stall, Automobile repair shop</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Piggery</td>
+  <td>10,000–15,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for rearing pigs (temporary sheds allowed)</td>
+  <td>Piggery shed, Watch & ward (30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Police station</td>
+  <td>500–1,000 sq.m.</td>
+  <td>12 & above</td>
+  <td>Local police station facility</td>
+  <td>Police station, Essential staff housing</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Poultry farm</td>
+  <td>10,000–15,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for rearing birds & egg production (temporary sheds allowed)</td>
+  <td>Poultry farm, Watch & ward (30 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Railway station / Yard</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Research & development centre</td>
+  <td>1,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for research in specific fields</td>
+  <td>R&D centre, Watch & ward (30 sq.m.), Flats (staff), Hostel, Canteen, Bank counter, Library, Post office</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Resorts</td>
+  <td>10,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Sports city</td>
+  <td>500,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Storage (Perishable / Hazardous / Inflammable goods)</td>
+  <td>10,000+ sq.m.</td>
+  <td>18 & above</td>
+  <td>-</td>
+  <td>-</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Veterinary hospital</td>
+  <td>2,000 sq.m.</td>
+  <td>18 & above</td>
+  <td>Premises for treatment of sick animals</td>
+  <td>Veterinary hospital, Flats (employees), Hostel, Veterinary college, Shops (grocery, chemist, etc.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+<tr>
+  <td>Rural</td>
+  <td>Agriculture warehousing / Food storage</td>
+  <td>5,000 sq.m.</td>
+  <td>30</td>
+  <td>Storage of agri-produce/food items (with 30m setback on village roads)</td>
+  <td>Godown, Warehousing, Cold storage, Flats (employees), Small office (50 sq.m.)</td>
+  <td><button class="copy-btn">📋 Copy</button></td>
+</tr>
+
+  </tbody>
+  </table>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // --- helper: extract first number and convert hectare → sqm ---
+  function getAreaValue(text) {
+    if (!text) return null;
+
+    text = text.replace(/\u2013|\u2014/g, "-").toLowerCase(); // normalize dash
+    const nums = text.match(/[\d.]+/g);
+    if (!nums) return null;
+
+    let value = parseFloat(nums[0]);
+
+    // convert hectare → sqm
+    if (text.includes("hect")) {
+      value = value * 10000;
+    }
+
+    return value;
+  }
+
+  function filterTable() {
+    const schemeValue = (document.getElementById("schemeSearch")?.value || "").toLowerCase();
+    const areaInput = parseFloat((document.getElementById("areaSearch")?.value || "").trim());
+    const roadInput = (document.getElementById("roadSearch")?.value || "").toLowerCase();
+
+    document.querySelectorAll("#zoningTable tbody tr").forEach(row => {
+      const scheme = (row.cells[0]?.innerText || "").toLowerCase();
+      const areaText = (row.cells[2]?.innerText || "").trim();
+      const roadText = (row.cells[3]?.innerText || "").trim().toLowerCase();
+
+      let schemeMatch = scheme.includes(schemeValue);
+
+      // --- area filter (<= input, exact or less) ---
+      let areaMatch = true;
+      if (!isNaN(areaInput)) {
+        const rowArea = getAreaValue(areaText);
+        areaMatch = rowArea !== null && rowArea <= areaInput;
+      }
+
+      // --- road filter (substring match only) ---
+      let roadMatch = true;
+      if (roadInput) {
+        roadMatch = roadText.includes(roadInput);
+      }
+
+      row.style.display = (schemeMatch && areaMatch && roadMatch) ? "" : "none";
+    });
+  }
+
+  ["schemeSearch","areaSearch","roadSearch"].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener("input", filterTable);
+  });
+
+});
+</script>
+
+
+
+
+</body>
+</html>
