@@ -7,15 +7,15 @@
  <style>
   body {
     font-family: "Segoe UI", Arial, sans-serif;
-    margin: 20px;
-    background: linear-gradient(to right, #e3f2fd, #fce4ec); /* light blue to light pink */
+    margin: 10px;
+    background: linear-gradient(to right, #e3f2fd, #fce4ec);
     color: #333;
   }
 
   h1 {
     text-align: center;
-    font-size: 32px;
-    color: #0d47a1; /* Dark Blue */
+    font-size: 28px;
+    color: #0d47a1;
     margin-bottom: 5px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -23,40 +23,49 @@
 
   h2 {
     text-align: center;
-    font-size: 22px;
-    color: #c62828; /* Dark Red */
-    margin-bottom: 20px;
+    font-size: 20px;
+    color: #c62828;
+    margin-bottom: 15px;
     font-weight: bold;
   }
 
   .search-box {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
+  .search-box select,
   .search-box input {
     padding: 8px;
-    width: 220px;
-    border: 2px solid #1976d2; /* Blue border */
+    min-width: 180px;
+    border: 2px solid #1976d2;
     border-radius: 6px;
     outline: none;
     transition: all 0.3s ease;
+    font-size: 14px;
   }
-  .search-box input:focus {
-    border-color: #c62828; /* Red on focus */
+
+  .search-box input:focus,
+  .search-box select:focus {
+    border-color: #c62828;
     box-shadow: 0 0 8px rgba(198, 40, 40, 0.6);
+  }
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #fff;
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 6px;
-    overflow: hidden;
+    min-width: 600px;
   }
 
   th, td {
@@ -68,7 +77,7 @@
   }
 
   th {
-    background: #1976d2; /* Blue */
+    background: #1976d2;
     color: #fff;
     font-size: 15px;
     text-transform: uppercase;
@@ -79,12 +88,12 @@
   }
 
   tr:hover {
-    background: #ffebee; /* light red hover */
+    background: #ffebee;
     transition: 0.3s;
   }
 
   .copy-btn {
-    background: #c62828; /* Red button */
+    background: #c62828;
     color: white;
     border: none;
     padding: 6px 12px;
@@ -94,20 +103,31 @@
     transition: background 0.3s ease;
   }
   .copy-btn:hover {
-    background: #b71c1c; /* Darker red */
+    background: #b71c1c;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 22px; letter-spacing: 1px; }
+    h2 { font-size: 16px; }
+    .search-box { flex-direction: column; align-items: stretch; }
+    .search-box select, .search-box input { width: 100%; }
+    th, td { font-size: 12px; padding: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    body { margin: 5px; }
+    h1 { font-size: 18px; }
+    h2 { font-size: 14px; }
+    th, td { font-size: 11px; padding: 6px; }
   }
 </style>
-
 </head>
-<body>
 <body>
 
   <h1>Lakshya Project Management</h1>
   <h2>DPCR</h2>
 
-  <!-- Search boxes outside the table -->
   <div class="search-box">
-    <!-- Scheme Type as dropdown -->
     <select id="schemeSearch">
       <option value="">ALL</option>
       <option value="residential">Residential</option>
@@ -116,27 +136,25 @@
       <option value="public">Public & Semi Public</option>
       <option value="rural">Rural</option>
       <option value="g2">G2</option>
-      
     </select>
 
-    <!-- Other filters stay as input -->
     <input type="text" id="areaSearch" placeholder="Search by Min Area (sq.m.)">
     <input type="text" id="roadSearch" placeholder="Search by Road Width">
   </div>
 
-  <table id="zoningTable">
-    <thead>
-      <tr>
-        <th>Scheme Type ➝</th>
-        <th>Activity ➝</th>
-        <th>Minimum Area Required (sq.m.) ➝</th>
-        <th>Road Width (m) ➝</th>
-        <th>Definitions ➝</th>
-        <th>Use Premises ➝</th>
-        <th>Action ➝</th>
-      </tr>
-    </thead>
-
+  <div class="table-container">
+    <table id="zoningTable">
+      <thead>
+        <tr>
+          <th>Scheme Type ➝</th>
+          <th>Activity ➝</th>
+          <th>Minimum Area Required (sq.m.) ➝</th>
+          <th>Road Width (m) ➝</th>
+          <th>Definitions ➝</th>
+          <th>Use Premises ➝</th>
+          <th>Action ➝</th>
+        </tr>
+      </thead>
  <tbody>
       <tr>
         <td>Residential</td>
